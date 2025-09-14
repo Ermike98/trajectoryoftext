@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Trajectory Text Generator</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Create creative trajectory text graphics with a customizable online generator. Export your design as SVG or PNG – fast, free, and easy!" />
+    <meta name="keywords" content="trajectory text generator, text to trajectory, SVG generator, creative text art, procedural art, download trajectory text, online graphic tool" />
+    <meta name="author" content="ShapeOfText" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Trajectory Text Graphics Online" />
+    <meta property="og:description" content="Generate unique trajectory text visuals in your browser. Customize colors, fonts, and shapes — no login needed." />
+    <meta property="og:url" content="https://trajectoryoftext.com" />
+    <meta property="og:image" content="https://trajectoryoftext.com/assets/preview.png" />
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Trajectory Text Generator – Make Cool Procedural Art" />
+    <meta name="twitter:description" content="Customize and export trajectory text art in SVG or PNG format. A creative tool for designers and typographers." />
+    <meta name="twitter:image" content="https://trajectoryoftext.com/assets/preview.png" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="img/icon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icon.png" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <div id="trajectoryContainer">
+        <!-- <svg id="trajectorySVG" viewBox="0 0 1000 1400"></svg> -->
+        <canvas id="trajectoryCanvas"></canvas>
+    </div>
+
+    <div id="controlsContainer">
+        <h1>Trajectory Text Generator</h1>
+        <section> 
+            <h4>Text:</h4>
+            <div class="control-label">
+                <label for="textInput">Text:</label>
+                <textarea rows="4" class="auto_height" onInput="auto_height(this)" id="textInput">This is a trajectory of text!</textarea>
+            </div>
+            
+            <div class="control-label">
+                <label for="nRepeatsInput">Number of Repeats:</label>
+                <input type="number" id="nRepeatsInput" value="1" step="1" min="1">
+            </div>
+
+            <div class="control-label">
+                <label for="textSizeInput">Text Size:</label>
+                <input type="number" id="textSizeInput" value="22" step="1" min="1">
+            </div>
+            
+            <div class="control-label">
+                <label for="textScaleInput">Text Scale:</label>
+                <input type="number" id="textScaleInput" value="0.8" step="0.025" min="0", max="1">
+            </div>
+            
+            <div class="control-label">
+                <label for="rotationStrengthInput">Rotation Strength:</label>
+                <input type="number" id="rotationStrengthInput" value="0.5" step="0.025">
+            </div>
+
+            <div class="control-label">
+                <label for="theta0Input">Angle Offset:</label>
+                <input type="number" id="theta0Input" value="0" step="0.1" min="-179" max="180">
+            </div>
+        </section>
+        
+        <section> 
+            <h4>Trajectory:</h4>
+            <div class="control-label">
+                <label for="outerCircleSizeInput">Outer Circle Size:</label>
+                <input type="number" id="outerCircleSizeInput" value="200" step="5" min="0">
+            </div>
+
+            <div class="control-label">
+                <label for="innerCircleSizeInput">Inner Circle Size:</label>
+                <input type="number" id="innerCircleSizeInput" value="10" step="0.1" min="0">
+            </div>
+
+            <div class="control-label">
+                <label for="nLoopsInput">Number of loops:</label>
+                <input type="number" id="nLoopsInput" value="1" step="1">
+            </div>
+
+            <!-- <div class="control-label">
+                <label for="n1Input">N1:</label>
+                <input type="number" id="n1Input" value="1" step="0.1">
+            </div>
+
+            <div class="control-label">
+                <label for="n2Input">N2:</label>
+                <input type="number" id="n2Input" value="1" step="0.1">
+            </div> 
+            -->
+            
+            
+            <div class="control-label">
+                <label for="expXInput">Exponent X:</label>
+                <input type="number" id="expXInput" value="1" step="0.25">
+            </div> 
+
+            <div class="control-label">
+                <label for="distXInput">Distorsion X:</label>
+                <input type="number" id="distXInput" value="1" step="0.1">
+            </div> 
+            
+            <div class="control-label">
+                <label for="expYInput">Exponent Y:</label>
+                <input type="number" id="expYInput" value="1" step="0.25">
+            </div> 
+
+            <div class="control-label">
+                <label for="distYInput">Distorsion Y:</label>
+                <input type="number" id="distYInput" value="1" step="0.1">
+            </div> 
+
+            <div class="control-label">
+                <label for="nRatio">N Ratio:</label>
+                <input type="number" id="nRatioInput" value="1" step="0.025">
+            </div>
+
+            <div class="control-label">
+                <label for="amplitudeInput">Wave Amplitude:</label>
+                <input type="number" id="amplitudeInput" value="1" step="1">
+            </div>
+
+            <div class="control-label">
+                <label for="phaseInput">Phase Offset:</label>
+                <input type="number" id="phaseInput" value="0" step="2.5" min="-180" max="360">
+            </div>
+
+            <div class="control-label">
+                <label for="offsetInput">Offset:</label>
+                <input type="number" id="offsetInput" value="0" step="5">
+            </div>
+
+            <button id="generate-random-trajectory">Generate Random Trajectory</button>
+        </section>
+        
+        <section> 
+            <h4>Colors:</h4>
+
+            <div class="control-label">
+                <label for="fontColorInput">Text Color:</label>
+                <input type="color" id="fontColorInput" value="#23001E">
+            </div>
+            
+            <div class="control-label">
+                <label for="bgColorInput">Background Color:</label>
+                <input type="color" id="bgColorInput" value="#FFFFFF">
+            </div>
+    
+        </section>
+
+        <section> 
+            <h4>Font:</h4>
+
+            <div class="control-panel">
+                <label for="fontUpload">Upload Your Font (TTF):</label>
+                <input type="file" id="fontUpload" accept=".ttf" />
+            </div>
+        </section>
+        
+        <section>
+            <h4>Download:</h4>
+
+            <button class="download" id="download-svg">Download SVG</button>
+            <button class="download" id="download-png">Download PNG</button>
+        </section>
+        
+        <section>
+            <h4>Reset:</h4>
+
+            <button id="reset">Reset Parameters</button>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
