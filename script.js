@@ -77,11 +77,9 @@ function refresh_graphics() {
     params.text = document.getElementById("textInput").value;
     params.nRepeats = parseInt(document.getElementById("nRepeatsInput").value);
     params.textSize = parseInt(document.getElementById("textSizeInput").value);
-    params.textScale = parseFloat(document.getElementById("textScaleInput").value);
     params.rotationStrength = parseFloat(document.getElementById("rotationStrengthInput").value);
     params.theta0 = parseFloat(document.getElementById("theta0Input").value);
     params.outerCircleSize = parseFloat(document.getElementById("outerCircleSizeInput").value);
-    params.innerCircleSize = parseFloat(document.getElementById("innerCircleSizeInput").value);
     params.nLoops = parseInt(document.getElementById("nLoopsInput").value);
     params.expX = parseFloat(document.getElementById("expXInput").value);
     params.distX = parseFloat(document.getElementById("distXInput").value);
@@ -157,11 +155,9 @@ function set_form_values() {
     document.getElementById("textInput").value = params.text;
     document.getElementById("nRepeatsInput").value = params.nRepeats;
     document.getElementById("textSizeInput").value = params.textSize;
-    document.getElementById("textScaleInput").value = params.textScale;
     document.getElementById("rotationStrengthInput").value = params.rotationStrength;
     document.getElementById("theta0Input").value = params.theta0;
     document.getElementById("outerCircleSizeInput").value = params.outerCircleSize;
-    document.getElementById("innerCircleSizeInput").value = params.innerCircleSize;
     document.getElementById("nLoopsInput").value = params.nLoops;
     document.getElementById("expXInput").value = params.expX;
     document.getElementById("distXInput").value = params.distX;
@@ -194,11 +190,9 @@ function render_trajectory_svg() {
     // let text = params.text;
     // let nRepeats = params.nRepeats;
     // let textSize = params.textSize;
-    // let textScale = params.textScale;
     // let rotationStrength = params.rotationStrength;
     // let theta0 = params.theta0;
     // let outerCircleSize = params.outerCircleSize;
-    // let innerCircleSize = params.innerCircleSize;
     // let nLoops = params.nLoops;
     // let n1 = params.n1;
     // let n2 = params.n2;
@@ -211,8 +205,8 @@ function render_trajectory_svg() {
     // let stepSize = 0.01
 
     let {
-        text, nRepeats, textSize, textScale, rotationStrength, theta0,
-        outerCircleSize, innerCircleSize, nLoops, expX, distX, expY, distY, nRatio,
+        text, nRepeats, textSize, rotationStrength, theta0,
+        outerCircleSize, nLoops, expX, distX, expY, distY, nRatio,
         // n1, n2,
         amplitude, phase, offset, fontColor, bgColor, fontBase64
     } = params;
@@ -449,8 +443,8 @@ function render_trajectory_canvas() {
     const ctx = canvas.getContext('2d');
 
     let {
-        text, nRepeats, textSize, textScale, rotationStrength, theta0,
-        outerCircleSize, innerCircleSize, nLoops, expX, distX, expY, distY, nRatio,
+        text, nRepeats, textSize, rotationStrength, theta0,
+        outerCircleSize, nLoops, expX, distX, expY, distY, nRatio,
         amplitude, phase, offset, fontColor, bgColor, fontBase64
     } = params;
 
@@ -552,25 +546,23 @@ var height = 4000
 
 // Default values
 const default_params = {
-    text: "This is a trajectory of text! This is a trajectory of text! This is a trajectory of text! This is a trajectory of text! This is a trajectory of text! This is a trajectory of text!",
-    nRepeats: 1,
+    text: "|||||||||||||",
+    nRepeats: 100,
     textSize: 22,
-    textScale: 0.8,
-    rotationStrength: 0.5 ,
+    rotationStrength: 1.0,
     theta0: 0,
-    outerCircleSize: 10,
-    innerCircleSize: 10,
-    nLoops: 1,
-    expX: 1,
-    distX: 1,
-    expY: 1,
-    distY: 1,
-    nRatio: 1,
-    amplitude: 1,
+    outerCircleSize: 800,
+    nLoops: 47,
+    expX: 0,
+    distX: 0.7,
+    expY: 0,
+    distY: 0.7,
+    nRatio: 0.602,
+    amplitude: 200,
     phase: 0,
     offset: 0,
-    fontColor: "#23001E",
-    bgColor: "#000000",
+    fontColor: "#B8BBC5",
+    bgColor: "#25272D",
     fontBase64: null
 };
 
